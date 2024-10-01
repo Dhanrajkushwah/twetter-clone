@@ -1,0 +1,162 @@
+/* General styles for the login container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black !important;
+  padding: 0 20px; /* Added padding to avoid content touching screen edges */
+}
+
+/* Column structure for responsiveness */
+.col-sm-6 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Styling the SVG */
+.svg-container {
+  width: 100%;
+  max-width: 400px;
+  color: #f5f8fa !important;
+ 
+}
+
+.svg-container svg {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  fill: white; /* Set SVG image color to white */
+}
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #d8dadc 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+/* Headline large (Happening now) styling */
+.headline-large {
+  font-size: 60px;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: left;
+  color: #f5f8fa !important;
+}
+
+/* Headline small (Join today) styling */
+.headline-small {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: left;
+  color: #f5f8fa !important;
+}
+
+/* Card styling */
+mat-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ /* Mat-form-field styles */
+ mat-form-field {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+/* Button styles */
+button {
+  width: 100%;
+  font-size: 16px;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  background-color: #1a91da;
+}
+
+/* Sign up with Apple button */
+.apple-button {
+  background-color: white; /* Black background for Apple button */
+  color: black;
+  margin-bottom: 10px;
+  border:  1px #333;
+}
+
+.apple-button i {
+  margin-right: 10px;
+}
+
+/* Sign in button with black background and white text */
+.sign-in-button {
+  background-color: black;
+  color: white;
+  border: 0 solid black;
+}
+
+/* Hover effects */
+button:hover {
+  background-color: #1a91da; /* Blue on hover for other buttons */
+}
+
+.apple-button:hover {
+  background-color: #333; /* Slightly lighter black on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .col-sm-6 {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .svg-container {
+    max-width: 90%;
+  }
+
+  .headline-large {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .headline-small {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  mat-card {
+    width: 100%;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .headline-large {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .headline-small {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  mat-card {
+    width: 100%;
+    margin: 0 10px;
+  }
+
+  .svg-container {
+    max-width: 80%;
+  }
+}

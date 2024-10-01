@@ -1,0 +1,23 @@
+<div *ngIf="userProfile" class="profile-container">
+  <div class="profile-header">
+    <div class="profile-image">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtuphMb4mq-EcVWhMVT8FCkv5dqZGgvn_QiA&s" alt="profile picture">
+    </div>
+    <h1>{{ userProfile.username }}</h1>
+    <p>Email: {{ userProfile.email }}</p>
+  </div>
+
+  <div class="profile-section">
+    <h3>Followers ({{ userProfile.followers.length }})</h3>
+    <ul class="followers-list">
+      <li *ngFor="let follower of userProfile.followers">{{ follower.username }}</li>
+    </ul>
+  </div>
+
+  <div class="profile-section">
+    <h3>Following ({{ userProfile.following.length }})</h3>
+    <ul class="following-list">
+      <li *ngFor="let follow of userProfile.following">{{ follow.username }}</li>
+    </ul>
+  </div>
+</div>

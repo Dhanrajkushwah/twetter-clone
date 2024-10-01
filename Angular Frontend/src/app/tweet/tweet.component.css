@@ -1,0 +1,143 @@
+/* General Styles */
+.tweet-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  justify-content: left;
+  text-align: left;
+}
+
+/* Tweet Form Styling */
+.tweet-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #0a0000;
+  padding: 15px;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #030000;
+  border-radius: 4px;
+  resize: none;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Media options styling */
+.media-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.media-options button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #1da1f2;
+  font-size: 20px;
+}
+
+.media-options button:hover {
+  color: #1a91da;
+}
+
+/* Tweet Button */
+.tweet-button {
+  align-self: flex-end;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tweet-button:hover {
+  background-color: #1a91da;
+}
+
+/* Media Container */
+.media-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.responsive-media {
+  width: 100%;
+  max-width: 100%; /* Adjust the max width as necessary */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 10px; /* Space between content and media */
+}
+
+/* Tweet List Styling */
+.tweet-list .tweet-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.tweet-actions {
+  display: flex;
+  align-items: center;
+}
+
+.tweet-actions button {
+  background-color: transparent;
+  color: #1da1f2;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tweet-actions span {
+  margin-left: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tweet-container {
+    padding: 10px;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+
+  .tweet-button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .media-options button {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tweet-container {
+    padding: 8px;
+  }
+
+  textarea {
+    font-size: 13px;
+  }
+
+  .tweet-button {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .media-options button {
+    font-size: 16px;
+  }
+}

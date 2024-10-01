@@ -1,0 +1,59 @@
+<div class="login-container"> 
+    <div class="col-sm-6">
+      <div class="svg-container">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1nao33i r-rxcuwo r-1777fci r-m327ed r-494qqr">
+          <g>
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+  
+    <div class="col-sm-6">
+      <h1 class="headline-large">Happening now</h1>
+      <h1 class="headline-small">Join today.</h1>
+      <form [formGroup]="signinForm">
+      <mat-card>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput autocomplete="off" type="email"  id="email" formControlName="email" name="email" [ngClass]="{'is-invalid': signinForm.controls['email'].errors && ckDep }"
+          placeholder="Enter your email"/>
+        </mat-form-field>
+        <small *ngIf="signinForm.controls['email'].errors && ckDep" class="text-danger">Enter Your Email</small>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput  autocomplete="off" [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          formControlName="password"
+          name="password"
+          [ngClass]="{ 'is-invalid': signinForm.controls['password'].errors && ckDep }"
+            placeholder="Enter your password"/>
+            <i
+            class="fa"
+            [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+            (click)="togglePasswordVisibility()"
+            style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"
+          ></i>
+        </mat-form-field>
+        <small
+        *ngIf="signinForm.controls['password'].errors && ckDep"
+        class="text-danger"
+        >Enter Your Password</small>
+  
+        <!-- Add "Sign up with Apple" button -->
+         
+        <button mat-raised-button class="apple-button">
+          <i class="fa-brands fa-apple" style="font-size: 25px;"></i> Sign up with Apple
+        </button>
+  
+        <button mat-raised-button color="light" routerLink="/signup"> <i class="fab fa-google"></i>&nbsp; Create account</button>
+        <span>By signing up, you agree to the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>, including <a href="">Cookie Use.</a></span>
+  
+        <h2 style="margin-top: 10px;">Already have an account?</h2>
+        <!-- "Sign in" button with black background -->
+        <button mat-raised-button class="sign-in-button" (click)="login()">Sign in</button>
+      </mat-card>
+      </form>
+    </div>
+  </div>
+  

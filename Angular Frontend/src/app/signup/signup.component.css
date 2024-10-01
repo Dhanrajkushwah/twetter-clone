@@ -1,0 +1,61 @@
+/* General styles for the signup container */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f5f8fa; /* Light background color similar to Twitter */
+  }
+  
+  /* Style for the card */
+  mat-card {
+    width: 400px; /* Fixed width for the card */
+    padding: 30px; /* Inner padding */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition effects */
+  }
+  
+  /* Card hover effect */
+  mat-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+  
+  /* Header styles */
+  h2 {
+    font-size: 24px; /* Font size for header */
+    text-align: center; /* Center the header text */
+    color: #14171a; /* Dark text color for the header */
+    margin-bottom: 20px; /* Space below the header */
+  }
+  
+  /* Mat-form-field styles */
+  mat-form-field {
+    width: 100%; /* Full width */
+    margin-bottom: 0px; /* Space below each form field */
+  }
+  
+  /* Button styles */
+  button {
+    width: 100%; /* Full width for button */
+    font-size: 16px; /* Font size */
+    background-color: #1da1f2; /* Twitter-like blue color */
+    color: white; /* Text color */
+    border-radius: 25px; /* Rounded corners for button */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effect */
+  }
+  
+  button:hover {
+    background-color: #1a91da; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight grow effect on hover */
+  }
+  
+  /* Add some responsive design */
+  @media (max-width: 500px) {
+    mat-card {
+      width: 90%; /* Make card responsive */
+      margin: 0 10px; /* Add side margins */
+    }
+  }
+  

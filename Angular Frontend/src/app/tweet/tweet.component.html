@@ -1,0 +1,48 @@
+<div class="tweet-container">
+  <div class="tweet-form">
+    <form (ngSubmit)="onTweet()">
+      <textarea [(ngModel)]="content" placeholder="What's happening?" rows="3"></textarea>
+      <div class="media-options">
+        <input class="form-control" matInput placeholder="Media URL (optional)" [(ngModel)]="mediaUrl" name="mediaUrl">
+        
+        <!-- Photo Upload -->
+        <input type="file" (change)="onFileSelected($event, 'photo')" accept="image/*" hidden #photoInput>
+        <button type="button" (click)="photoInput.click()"><i class="fas fa-camera"></i></button>
+
+        <!-- Video Upload -->
+        <input type="file" (change)="onFileSelected($event, 'video')" accept="video/*" hidden #videoInput>
+        <button type="button" (click)="videoInput.click()"><i class="fas fa-video"></i></button>
+
+        <button type="button"><i class="fas fa-font"></i></button>
+      </div>
+      <button class="tweet-button" type="submit">Tweet</button>
+    </form>
+
+    <br>
+    <div class="tweet-list"></div>
+    <div *ngFor="let tweet of tweets">
+      <mat-card class="mt-2">
+        <mat-card-header>
+          <mat-card-title>{{ tweet.author?.username }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ tweet.content }}</p>
+          <div class="media-container">
+            <img *ngIf="tweet.mediaUrl" [src]="tweet.mediaUrl" alt="Media" class="responsive-media" />
+            <video *ngIf="tweet.mediaUrl && tweet.mediaUrl.endsWith('.mp4')" controls class="responsive-media">
+              <source [src]="tweet.mediaUrl" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="tweet-actions">
+            <button (click)="onLike(tweet._id)">
+              <i class="fas fa-heart"></i> Like
+            </button>
+            
+            <span style="color: rgb(14, 1, 1);">{{ tweet.likes?.length || 0 }} likes</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

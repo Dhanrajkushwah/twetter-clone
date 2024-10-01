@@ -1,0 +1,37 @@
+<div class="signup-container">
+  <form [formGroup]="registrationForm">
+    <mat-card>
+      <h2>Sign up for Twitter <i class="fa-brands fa-twitter"></i></h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput  autocomplete="off" type="text" id="username" formControlName="username"  [ngClass]="{'is-invalid': registrationForm.controls['username'].errors && ckDep }" />
+      </mat-form-field>
+      <small *ngIf="registrationForm.controls['username'].errors && ckDep" class="text-danger">Enter Your Username</small>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput autocomplete="off" type="email" id="email" formControlName="email"  [ngClass]="{'is-invalid': registrationForm.controls['email'].errors && ckDep }" />
+      </mat-form-field>
+      <small *ngIf="registrationForm.controls['email'].errors && ckDep" class="text-danger">Enter Your Email</small>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput  type="password"  autocomplete="off"  [type]="showPassword ? 'text' : 'password'"
+        id="password"
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': registrationForm.controls['password'].errors && ckDep }"/>
+        <i
+        class="fa"
+        [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+        (click)="togglePasswordVisibility()"
+        style="position: absolute; right: 25px; top: 10px; cursor: pointer;"
+      ></i>
+      </mat-form-field>
+      <small
+      *ngIf="registrationForm.controls['password'].errors && ckDep"
+      class="text-danger"
+      >Enter Your Password</small
+    >
+      <button mat-raised-button color="primary" (click)="signup()">Sign Up</button>
+    </mat-card>
+  </form>
+  </div>
+  

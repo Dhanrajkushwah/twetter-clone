@@ -1,0 +1,20 @@
+.btn-submit {
+  background-color:#131416;;
+  border-color:#111317;
+  color: #ffffff;
+  padding: 6px 12px !important;
+  background-image: none;
+  border-radius: 5px;
+  float: right;
+  text-align: right;
+  justify-content: right;
+  }
+  
+  .btn-submit:hover {
+  background-color: #ff5263;
+  border-color: #ed4758;
+  }
+
+.example-spacer {
+  flex: 1 1 auto;
+  }

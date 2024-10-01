@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="twitter-container"> 
+        <div class="sidebar">
+            <ul>
+                <li><a routerLink="/home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a routerLink="/explore"><i class="fas fa-compass"></i> Explore</a></li>
+                <!-- <li class="d-flex"> <a [routerLink]="['/notification']" (click)="markNotificationsAsRead()"><i class="fas fa-bell"></i> Notifications</a><span *ngIf="newTweetCount > 0" class="notification-badge">{{ newTweetCount }}</span></li> -->
+
+                <li class="d-flex"> <a  (click)="markNotificationsAsRead()"><i class="fas fa-bell"></i> Notifications</a><span *ngIf="newTweetCount > 0" class="notification-badge">{{ newTweetCount }}</span></li>
+                <li><a routerLink="/massage"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a routerLink="/grok"><i class="fas fa-user-secret"></i> Grok</a></li>
+                <li><a routerLink="/communities"><i class="fas fa-users"></i> Communities</a></li>
+                <li><a routerLink="/premium"><i class="fas fa-star"></i> Premium</a></li>
+                <li><a [routerLink]="['/profile', currentUserId]"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a routerLink="/more"><i class="fas fa-ellipsis-h"></i> More</a></li>
+            </ul>
+            <button class="post-button" (click)="postTweet()">Post</button>
+            <button class="logout-button" (click)="logout()">Logout</button>
+
+            <!-- Display Followers and Following -->
+            <div class="follow-section mt-3">
+                <h3>Your Followers</h3>
+                <ul>
+                    <li *ngFor="let follower of followers">
+                      <p>{{ follower.username }}</p>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+      
+        <div class="main-content" (scroll)="onScroll($event)">
+            <div class="tweet-box">
+                <h2 style="margin-left:15px;">For You</h2>
+                 <!-- Show app-tweet if showMessages is false -->
+            <app-tweet *ngIf="!showMessages"></app-tweet>
+            <!-- Show app-masseage if showMessages is true -->
+            <app-masseage *ngIf="showMessages"></app-masseage>
+            </div>
+            <div class="tweets scrollbar mx-4">
+                <div class="tweet">
+                    <p>This is a tweet example!</p>
+                </div>
+                <div class="tweet">
+                    <p>This is another tweet example!</p>
+                </div>
+                <div class="tweet">
+                    <p>This is yet another tweet example!</p>
+                </div>
+            </div>
+        </div>
+  
+        <div class="right-sidebar mt-5">
+            <h3>Who to follow</h3>
+            <ul>
+                <li *ngFor="let follow of following">
+                  <p>{{ follow.username }} 
+                    <button (click)="followUser(follow._id)">Follow</button>
+                  </p>
+                </li>
+              </ul>
+        </div>
+    </div>  
+</body>
+</html>
