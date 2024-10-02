@@ -12,25 +12,28 @@ import { SocketService } from '../socket.service';
 export class HomeComponent implements OnInit {
   followers: any[] = [];
   following: any[] = [];
+  tweets: any[] = [];
+  filteredFollowers: any[] = [];
+  filteredFollowing: any[] = [];
+  filteredTweets: any[] = [];
   currentUserId: string = '';
-  showMessages = false; // Initialize as an empty string
+  searchQuery: string = '';
+  showMessages = false;
   loadingMore: any;
-  userId: string = ''; // Define the userId property
-  notifications: any[] = [];
   newTweetCount: number = 0;
- 
-  constructor(private tweetService: TweetService, private router: Router,private socketService: SocketService) {}
+  notifications: any[] = [];
+  constructor(private tweetService: TweetService, private router: Router, private socketService: SocketService) {}
 
   ngOnInit(): void {
-    debugger
     const userId = localStorage.getItem('userId');
     if (userId) {
       this.currentUserId = userId;
       this.fetchFollowers();
       this.fetchFollowing();
+      this.fetchTweets();
       this.tweetService.getNewTweetNotification().subscribe(() => {
         this.newTweetCount++;
-        this.notifications.push('New tweet created'); // Optional: Add more details to notification
+        this.notifications.push('New tweet created');
       });
     } else {
       this.router.navigate(['/login']);
@@ -43,43 +46,84 @@ export class HomeComponent implements OnInit {
   fetchFollowers() {
     this.tweetService.getFollowers(this.currentUserId).subscribe(
         (response: any) => {
-            console.log("Raw Follower Response:", response); // Log raw response
-            this.followers = response.followers || []; // Fallback to empty array if undefined
-            console.log("Processed Follower Data", this.followers);
+            this.followers = response.followers || [];
+            this.filteredFollowers = [...this.followers]; // Initially, set filtered followers to all
         },
         error => {
             console.error('Error fetching followers:', error);
         }
     );
-}
+  }
 
-fetchFollowing() {
+  fetchFollowing() {
     this.tweetService.getFollowing(this.currentUserId).subscribe(
         (response: any) => {
-            console.log("Raw Following Response:", response); // Log raw response
-            this.following = response.following || []; // Fallback to empty array if undefined
-            console.log("Processed Following Data", this.following);
+            this.following = response.following || [];
+            this.filteredFollowing = [...this.following]; // Initially, set filtered following to all
         },
         error => {
             console.error('Error fetching following:', error);
         }
     );
-}
+  }
 
+  fetchTweets() {
+    this.tweetService.getTweets().subscribe(
+        (response: any) => {
+            this.tweets = response.tweets || [];
+            this.filteredTweets = [...this.tweets]; // Initially, set filtered tweets to all
+        },
+        error => {
+            console.error('Error fetching tweets:', error);
+        }
+    );
+  }
+
+  // Search logic
+  onSearch() {
+    const query = this.searchQuery.toLowerCase();
+    
+    // Filter followers
+    this.filteredFollowers = this.followers.filter(follower => 
+      follower.username.toLowerCase().includes(query)
+    );
+
+    // Filter following
+    this.filteredFollowing = this.following.filter(follow => 
+      follow.username.toLowerCase().includes(query)
+    );
+
+    // Filter tweets (assuming each tweet has a `content` or similar field)
+    this.filteredTweets = this.tweets.filter(tweet => 
+      tweet.content.toLowerCase().includes(query)
+    );
+  }
 
   followUser(followUserId: string) {
     this.tweetService.followUser(this.currentUserId, followUserId).subscribe(
       response => {
         alert('Followed user successfully!');
-        this.fetchFollowing();  // Refresh the following list
+        this.fetchFollowing();
       },
       error => {
         console.error('Error following user:', error);
-        alert('Failed to follow user. Please try again.'); // Optional error message
+        alert('Failed to follow user. Please try again.');
       }
     );
   }
 
+  unfollowUser(unfollowUserId: string) {
+    this.tweetService.unfollowUser(this.currentUserId, unfollowUserId).subscribe(
+      response => {
+        alert('Unfollowed user successfully!');
+        this.fetchFollowing();
+      },
+      error => {
+        console.error('Error unfollowing user:', error);
+        alert('Failed to unfollow user. Please try again.');
+      }
+    );
+  }
   postTweet() {
     // Tweet posting logic here
   }
@@ -87,12 +131,6 @@ fetchFollowing() {
     this.newTweetCount = 0;  // Reset the notification count
     this.notifications = []; // Clear the notifications
   }
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId'); // Remove userId on logout
-    this.router.navigate(['/login']);
-  }
-
   onScroll(event: any) {
     const element = event.target;
     if (element.scrollHeight - element.scrollTop === element.clientHeight && !this.loadingMore) {
@@ -102,9 +140,9 @@ fetchFollowing() {
   showMessagesComponent() {
     this.showMessages = true;
   }
-
-  // Show tweets when any other button is clicked, like "Home"
-  showTweetsComponent() {
-    this.showMessages = false;
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    this.router.navigate(['/login']);
   }
 }

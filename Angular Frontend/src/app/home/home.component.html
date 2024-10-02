@@ -22,8 +22,9 @@
             <!-- Display Followers and Following -->
             <div class="follow-section mt-3">
                 <h3>Your Followers</h3>
+                <h3>Followers ({{filteredFollowers.length}})</h3>
                 <ul>
-                    <li *ngFor="let follower of followers">
+                    <li *ngFor="let follower of filteredFollowers">
                       <p>{{ follower.username }}</p>
                     </li>
                   </ul>
@@ -51,12 +52,19 @@
             </div>
         </div>
   
-        <div class="right-sidebar mt-5">
+        <div class="right-sidebar mt-2">
+             <!-- Following Section -->
+  
+            <div class="search-container px-2">
+                <input type="text" placeholder="Search" [(ngModel)]="searchQuery" class="search-bar" (input)="onSearch()" />
+              </div>
             <h3>Who to follow</h3>
+            <h3>Following ({{filteredFollowing.length}})</h3>
             <ul>
-                <li *ngFor="let follow of following">
+                <li *ngFor="let follow of filteredFollowing">
                   <p>{{ follow.username }} 
                     <button (click)="followUser(follow._id)">Follow</button>
+                    <button (click)="unfollowUser(follow._id)">Unfollow</button>
                   </p>
                 </li>
               </ul>

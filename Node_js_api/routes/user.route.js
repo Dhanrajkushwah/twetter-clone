@@ -9,9 +9,11 @@ const {
     likeTweet,
     getTweets, 
     deleteTweet, 
+    retweetTweet,
     sendMessage, 
     getMessages, 
     followUser,
+    unfollowUser,
     getFollowers,
     getFollowing,
 
@@ -36,6 +38,7 @@ router.post('/login', loginUser);
 router.post('/tweets', checkAuth, createTweet);
 router.get('/tweets', getTweets);
 router.delete('/tweets/:id', checkAuth, deleteTweet);
+router.put('/tweets/:id/retweet',checkAuth, retweetTweet);
 router.post('/tweets/:id/like', checkAuth, likeTweet);
 
 // Message routes
@@ -44,6 +47,7 @@ router.get('/messages', checkAuth, getMessages);
 
 // Follow user route
 router.post('/follow', checkAuth, followUser);
+router.post('/unfollow',checkAuth, unfollowUser);
 
 // Fetch followers and following
 router.get('/users/:id/followers', checkAuth, getFollowers);

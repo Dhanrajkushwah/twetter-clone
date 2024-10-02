@@ -29,9 +29,7 @@ export class TweetService {
     );;
   }
 
-  retweetTweet(tweetId: string) {
-    return this._http.put(`${environment._api}/${tweetId}/api/user/tweets/retweet`, {});
-  }
+
   getNewTweetNotification(): Observable<void> {
     return this.newTweetNotification.asObservable();
   }
@@ -41,6 +39,14 @@ export class TweetService {
 
  likeTweet(tweetId: string): Observable<any> {
   return this._http.post(`${environment._api}/api/user/tweets/${tweetId}/like`, {}, this.getHeaders()); // Ensure the body is passed even if empty ( {})
+}
+
+deleteTweet(tweetId: string): Observable<any> {
+  return this._http.delete(`${environment._api}/api/user/tweets/${tweetId}`, this.getHeaders());
+}
+
+retweetTweet(tweetId: string): Observable<any> {
+  return this._http.put(`${environment._api}/api/user/tweets/${tweetId}/retweet`, {}, this.getHeaders());
 }
 
   getUserById(userId: string): Observable<any> {
@@ -69,7 +75,15 @@ export class TweetService {
     },this.getHeaders());
   }
 
+  unfollowUser(currentUserId: string, unfollowUserId: string): Observable<any> {
+    return this._http.post(`${environment._api}/api/user/unfollow`, {
+      followerId: currentUserId,
+      unfollowUserId: unfollowUserId
+    }, this.getHeaders());
+  }
+
   getUserProfile(userId: string): Observable<any> {
     return this._http.get(`${environment._api}/api/user/users/${userId}`,this.getHeaders());
   }
+  
 }

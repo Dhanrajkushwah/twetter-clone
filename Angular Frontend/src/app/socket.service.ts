@@ -9,7 +9,7 @@ export class SocketService {
   private socket: Socket;
 
   constructor() {
-    this.socket = io('https://twetter-clone.vercel.app'); // Backend server URL
+    this.socket = io('http://localhost:5000'); // Backend server URL
   }
 
   // Send a message

@@ -38,8 +38,13 @@
             <button (click)="onLike(tweet._id)">
               <i class="fas fa-heart"></i> Like
             </button>
-            
-            <span style="color: rgb(14, 1, 1);">{{ tweet.likes?.length || 0 }} likes</span>
+            <span style="color: rgb(14, 1, 1);">{{ tweet.likes?.length || 0 }} likes</span>&nbsp;
+            <button (click)="onDelete(tweet._id)">
+              <i class="fas fa-trash"></i> Delete
+            </button>&nbsp;
+            <button (click)="onRetweet(tweet._id)">
+              <i class="fas fa-retweet"></i> Retweet
+            </button>
           </div>
         </mat-card-content>
       </mat-card>
